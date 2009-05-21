@@ -9,8 +9,7 @@ from txamqp import spec
 
 from gitosis_update_listener.listener import gotConnection
 from gitosis_update_listener.helpers import process_config, read_config
-
-import settings
+from gitosis_update_listener import settings
 
 config = process_config(read_config(settings.gitosis_config))
 s = spec.load(settings.spec_file)

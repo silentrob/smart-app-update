@@ -1,14 +1,18 @@
+from __future__ import with_statement
+
 from os import path, mkdir, devnull, getcwd, chdir
 from subprocess import Popen
 from twisted.internet.utils import getProcessOutputAndValue
 from hashlib import md5
 from uuid import uuid1
 
+import ConfigParser
+
 def read_config(file_name):
     cfg = ConfigParser.RawConfigParser()
 
     try:
-        with open(os.path.expanduser(file_name)) as f:
+        with open(path.expanduser(file_name)) as f:
             cfg.readfp(f)
     except (IOError, OSError), e:
         if e.errno == errno.ENOENT:

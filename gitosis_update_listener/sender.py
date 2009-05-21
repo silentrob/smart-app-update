@@ -1,15 +1,14 @@
 from twisted.internet.defer import inlineCallbacks
 from twisted.internet import reactor
 from twisted.internet.protocol import ClientCreator
+
 from txamqp.protocol import AMQClient
 from txamqp.client import TwistedDelegate
 from txamqp.content import Content
 import txamqp.spec
+
+from helpers import read_config, process_config
 import settings
-
-from gitosis.util import read_config
-
-from helpers import process_config
 
 @inlineCallbacks
 def gotConnection(conn, authentication, body):

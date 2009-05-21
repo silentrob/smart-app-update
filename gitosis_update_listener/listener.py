@@ -7,9 +7,8 @@ from txamqp.protocol import AMQClient
 from txamqp.client import TwistedDelegate
 
 from helpers import random_queue, process_config, update_or_create_repository, \
-                    CommandFailed
+                    CommandFailed, read_config
 
-from gitosis.util import read_config
 from socket import gethostname
 
 import simplejson as json
