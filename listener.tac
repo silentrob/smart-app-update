@@ -7,9 +7,8 @@ from txamqp.protocol import AMQClient
 from txamqp.client import TwistedDelegate
 from txamqp import spec
 
-from watcher import gotConnection
-from gitosis.util import read_config
-from helpers import process_config
+from gitosis_update_listener.listener import gotConnection
+from gitosis_update_listener.helpers import process_config, read_config
 
 import settings
 
@@ -24,4 +23,4 @@ d = ClientCreator(reactor, AMQClient, delegate=TwistedDelegate(), vhost="/",
 
 d.addCallback(gotConnection, authentication)
 
-application = service.Application("smart-watcher")
+application = service.Application("gitosis_update_listener")

@@ -4,6 +4,19 @@ from twisted.internet.utils import getProcessOutputAndValue
 from hashlib import md5
 from uuid import uuid1
 
+def read_config(file_name):
+    cfg = ConfigParser.RawConfigParser()
+
+    try:
+        with open(os.path.expanduser(file_name)) as f:
+            cfg.readfp(f)
+    except (IOError, OSError), e:
+        if e.errno == errno.ENOENT:
+            raise ConfigFileDoesNotExistError(str(e))
+        else:
+            raise CannotReadConfigError(str(e))
+    return cfg
+
 class CommandFailed(Exception):
     """Raised when a shell command fails"""
     def __init__(self, value):
