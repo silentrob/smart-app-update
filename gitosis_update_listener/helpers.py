@@ -7,6 +7,16 @@ from hashlib import md5
 from uuid import uuid1
 
 import ConfigParser
+import errno
+
+class CannotReadConfigError(Exception):
+    """Unable to read config file"""
+
+    def __str__(self):
+        return '%s: %s' % (self.__doc__, ': '.join(self.args))
+
+class ConfigFileDoesNotExistError(CannotReadConfigError):
+    """Configuration does not exist"""
 
 def read_config(file_name):
     cfg = ConfigParser.RawConfigParser()
