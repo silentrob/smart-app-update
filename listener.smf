@@ -25,8 +25,14 @@
     <exec_method 
         name='start'
         type='method' 
-        exec='/opt/local/bin/twistd-2.5 -y /opt/local/smart/share/listener.tac --logfile /opt/local/smart/log/listener.log --pidfile /var/run/listener.pid'
+        exec='/opt/local/bin/twistd-2.5 -y /opt/local/smart/share/listener.tac --logfile /opt/local/smart/log/listener.log --pidfile /opt/local/smart/run/listener.pid'
         timeout_seconds='60'>
+        <method_context working_directory=":default">
+          <method_credential user='jill' group='jill'/>
+	  <method_environment>
+	    <envvar name="PATH" value="/opt/local/bin:/opt/local/sbin:/usr/xpg4/bin:/usr/bin:/usr/sbin:/usr/sfw/bin:/usr/openwin/bin:/opt/SUNWspro/bin:/usr/ccs/bin"/>
+	  </method_environment>
+        </method_context>
     </exec_method>
 
     <exec_method
