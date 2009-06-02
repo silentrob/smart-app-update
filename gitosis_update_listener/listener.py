@@ -53,7 +53,7 @@ def gotConnection(conn, authentication):
     yield chan.channel_open()
 
     # Initialize the MQ state
-    yield chan.queue_declare(queue=QUEUE, durable=True, exclusive=False, auto_delete=False)
+    yield chan.queue_declare(queue=QUEUE, durable=False, exclusive=False, auto_delete=True)
     yield chan.exchange_declare(exchange=config['exchange'], type="fanout",
                                 durable=True, auto_delete=False)
     yield chan.queue_bind(queue=QUEUE, exchange=config['exchange'])
