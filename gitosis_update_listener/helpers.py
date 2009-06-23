@@ -1,7 +1,6 @@
 from __future__ import with_statement
 
 from os import path, mkdir, devnull, getcwd, chdir
-from subprocess import Popen
 from twisted.internet.utils import getProcessOutputAndValue
 from hashlib import md5
 from uuid import uuid1
@@ -47,16 +46,10 @@ def cb(result):
         print("stderr was %s\n" % stderr);
 
 def call(cmd):
+    cmd = [str(x) for x in cmd]
     executable = cmd.pop(0);
     output = getProcessOutputAndValue(executable, cmd);
     output.addCallback( cb );
-
-def oldcall(cmd):
-    p = Popen(cmd, stdout=open(devnull, 'w'))
-    p.wait() 
-    if p.poll() != 0:
-        raise CommandFailed(" ".join(cmd) + " in directory "+getcwd())
-    return p
 
 def uuid():
     """
