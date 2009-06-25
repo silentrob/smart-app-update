@@ -12,7 +12,7 @@ setup(
 
     install_requires = [
         #"txamqp >= 1.2.0",
-        "twisted >= 8.2.0",
+        "twisted >= 8.0.0",
         "simplejson >= 2.0.0",
         ],
       )
